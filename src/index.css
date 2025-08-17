@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* @theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+@custom-variant dark (&amp;:where(.dark, .dark *)); */
+
+/* [data-theme="light"] {
+  --bg-color: white;
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --bg-color: black;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+} */
+
+body {
+  background-color: #f5febd;
+}
