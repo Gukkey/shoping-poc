@@ -7,6 +7,7 @@ import InputComponent from "../../components/InputComponent";
 import { validationSchema } from "./ValidationSchema";
 import Phone from "../../components/svg/Phone";
 import Instagram from "../../components/svg/Instagram";
+import toast from "react-hot-toast";
 
 const ContactComponent = ({ icon, field, value, key, href }) => (
   <div id={key}>
@@ -33,7 +34,11 @@ function HomePage() {
     initialValues: contactFormInitalState,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      // TODO: Integrate headless ORM once the implementation is done
+      toast.success("Your message has been sent successfully", {
+        duration: 5000,
+      });
+      formik.resetForm();
     },
   });
 
