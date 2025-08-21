@@ -16,7 +16,7 @@ function InputComponent({
   required = false,
   error = null,
   touched = false,
-  errorClassName = "text-red-600 max-w-2xs",
+  errorClassName = "text-red-600 max-w-2xs py-2",
 }) {
   return (
     <div
@@ -29,7 +29,7 @@ function InputComponent({
       </label>
       {type === "textarea" ? (
         <textarea
-          className={`border border-black h-8 rounded-lg ${inputClassName}`}
+          className={`border-2 border-[#d4cbb7] rounded-lg ${inputClassName}`}
           id={id}
           name={name}
           placeholder={placeholder}
@@ -41,7 +41,7 @@ function InputComponent({
         />
       ) : (
         <input
-          className={`border border-black h-8 rounded-lg ${inputClassName}`}
+          className={`border-2 border-[#d4cbb7] h-8 rounded-lg ${inputClassName}`}
           id={id}
           name={name}
           placeholder={placeholder}

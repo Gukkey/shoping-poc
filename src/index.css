@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-custom-pink: #f78ba2;
+}
+
 /* @theme {
   --color-white: #ffffff;
   --color-black: #000000;

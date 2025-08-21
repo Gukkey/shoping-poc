@@ -5,6 +5,22 @@ import ScrollingCarousel from "../../components/ScrollingCarousel";
 import { useFormik } from "formik";
 import InputComponent from "../../components/InputComponent";
 import { validationSchema } from "./ValidationSchema";
+import Phone from "../../components/svg/Phone";
+import Instagram from "../../components/svg/Instagram";
+
+const ContactComponent = ({ icon, field, value, key, href }) => (
+  <div id={key}>
+    <div className="flex gap-2">
+      {icon}
+      <div className="flex flex-col -mt-1">
+        <p className="text-[#c08783] font-semibold">{field}</p>
+        <a href={href} target="_blank">
+          {value}
+        </a>
+      </div>
+    </div>
+  </div>
+);
 
 function HomePage() {
   const contactFormInitalState = {
@@ -21,7 +37,6 @@ function HomePage() {
     },
   });
 
-  console.log("values", formik.values);
   return (
     <div>
       <div className="h-[calc(100vh-96px)] overflow-y-auto flex flex-col">
@@ -69,12 +84,12 @@ function HomePage() {
           </ScrollingCarousel>
         </div>
       </div>
-      <form
-        id="contact-form-container"
-        onSubmit={formik.handleSubmit}
-        className="bg-[#fef5e4] text-[#f58da0] flex gap-8 py-10 "
-      >
-        <div id="form-wrapper" className="flex flex-col flex-1 items-end">
+      <div className="bg-[#fef5e4] text-custom-pink flex gap-8 py-10 ">
+        <form
+          id="contact-form-container"
+          onSubmit={formik.handleSubmit}
+          className="flex flex-col flex-1 items-center-safe gap-2"
+        >
           <InputComponent
             label="Name"
             placeholder="Enter your name"
@@ -85,10 +100,11 @@ function HomePage() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.name}
-            className="w-full max-w-2xs"
+            className="w-full max-w-2xs gap-1"
             inputClassName="p-4"
             error={formik.errors.name}
             touched={formik.touched.name}
+            labelClassName="font-semibold"
           />
           <InputComponent
             label="Email"
@@ -100,10 +116,11 @@ function HomePage() {
             value={formik.values.emailAddress}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            className="w-full max-w-2xs"
+            className="w-full max-w-2xs gap-1"
             inputClassName="p-4"
             error={formik.errors.emailAddress}
             touched={formik.touched.emailAddress}
+            labelClassName="font-semibold"
           />
           <InputComponent
             label="Mobile number"
@@ -115,10 +132,11 @@ function HomePage() {
             value={formik.values.phoneNumber}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            className="w-full max-w-2xs"
+            className="w-full max-w-2xs gap-1"
             inputClassName="p-4"
             error={formik.errors.phoneNumber}
             touched={formik.touched.phoneNumber}
+            labelClassName="font-semibold"
           />
           <InputComponent
             label="Message"
@@ -130,17 +148,44 @@ function HomePage() {
             value={formik.values.message}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            className="w-full max-w-2xs"
+            className="w-full max-w-2xs gap-1"
             inputClassName="pl-4"
             error={formik.errors.message}
             touched={formik.touched.message}
+            labelClassName="font-semibold"
           />
-        </div>
+          <button
+            type="submit"
+            id="contact-form-submit-btn"
+            className="bg-custom-pink text-white w-full max-w-2xs rounded-3xl mt-2 h-11"
+          >
+            Submit
+          </button>
+        </form>
         <div id="contact-details-wrapper" className="flex-1">
-          <p>Contact Us</p>
-          <p>Get in touch</p>
+          <div className="flex flex-col gap-2">
+            <p className="text-xl font-semibold">Contact Us</p>
+            <p className="text-4xl font-bold">Get in touch</p>
+          </div>
+          <div className="flex gap-2 mt-8">
+            <ContactComponent
+              icon={<Phone />}
+              field="Phone Us"
+              value="+91 6374351991"
+              key="contact-phone"
+              href="tel:+91 6374351991"
+            />
+            <ContactComponent />
+            <ContactComponent
+              icon={<Instagram />}
+              field="Instagram"
+              value="@gukkey"
+              key="contact-instagram"
+              href="https://www.instagram.com/gukkey/"
+            />
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
