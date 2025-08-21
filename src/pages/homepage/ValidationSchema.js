@@ -9,9 +9,16 @@ export const validationSchema = Yup.object({
     .email("Invalid email address"),
   phoneNumber: Yup.string()
     .required("Phone number is required")
-    .matches(
-      /^[0-9]{10}$/,
-      "Phone number must be 10 digits and must be a valid number"
+    .test(
+      "indian-phone",
+      "Phone number must be a valid Indian number (optionally prefixed with +91)",
+      function (value) {
+        if (!value) return false;
+        // Remove all spaces and dashes
+        const cleanNumber = value.replace(/[\s-]/g, "");
+        // Check if it matches Indian phone number pattern
+        return /^(\+91)?[6-9]\d{9}$/.test(cleanNumber);
+      }
     ),
   message: Yup.string()
     .required("Message is required")
